@@ -2,7 +2,7 @@
 Homebrew tap for HEP software at Warwick:
 
 - HEP specific packages
-- Custom versions of `homebrew-{core,science,hep} Formulae
+- Custom versions of `homebrew-{core,science,hep}` Formulae
 
 To use as the main repo, do
 
