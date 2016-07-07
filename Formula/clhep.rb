@@ -19,12 +19,17 @@ class Clhep < Formula
 
   depends_on "cmake" => :build
 
+  option :cxx11
+
   def install
+    ENV.cxx11 if build.with? "c++11"
     # CLHEP is super fussy and doesn't allow source tree builds
     dir = Dir.mktmpdir
     cd dir do
       args = std_cmake_args
-      if build.stable?
+      args << "-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON"
+      args << "-DCLHEP_BUILD_CXXSTD=-std=c++11" if build.cxx11?
+       if build.stable?
         args << "#{buildpath}/CLHEP"
       else
         args << "#{buildpath}"
