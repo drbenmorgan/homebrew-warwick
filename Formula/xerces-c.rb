@@ -16,7 +16,10 @@ class XercesC < Formula
   depends_on "icu4c" unless OS.mac?
   depends_on "curl" unless OS.mac?
 
+  option :cxx11
+
   def install
+    ENV.cxx11 if build.with? "c++11"
     ENV.universal_binary if build.universal?
     system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}"
