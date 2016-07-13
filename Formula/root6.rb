@@ -1,9 +1,9 @@
 class Root6 < Formula
   homepage "http://root.cern.ch"
-  version "6.06.04"
+  version "6.06.06"
   url "http://root.cern.ch/download/root_v#{version}.source.tar.gz"
   mirror "https://fossies.org/linux/misc/root_v#{version}.source.tar.gz"
-  sha256 "ab86dcc80cbd8e704099af0789e23f49469932ac4936d2291602301a7aa8795b"
+  sha256 "0a7d702a130a260c72cb6ea754359eaee49a8c4531b31f23de0bfcafe3ce466b"
   head "http://root.cern.ch/git/root.git"
 
   depends_on "cmake" => :build
