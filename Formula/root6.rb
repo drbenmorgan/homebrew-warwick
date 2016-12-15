@@ -1,9 +1,9 @@
 class Root6 < Formula
   homepage "http://root.cern.ch"
-  version "6.06.06"
+  version "6.08.02"
   url "http://root.cern.ch/download/root_v#{version}.source.tar.gz"
   mirror "https://fossies.org/linux/misc/root_v#{version}.source.tar.gz"
-  sha256 "0a7d702a130a260c72cb6ea754359eaee49a8c4531b31f23de0bfcafe3ce466b"
+  sha256 "131c50a81e72a1cd2b2825c66dbe3916c23b28006e84f5a028baed4c72d86014"
   head "http://root.cern.ch/git/root.git"
 
   depends_on "cmake" => :build
@@ -12,7 +12,7 @@ class Root6 < Formula
   depends_on "sqlite3" => :recommended
   depends_on "tbb" => [:optional, 'c++11']
   depends_on :python => :recommended
-  #depends_on :x11 => :recommended if OS.linux?
+  depends_on :x11 => :recommended if OS.linux?
   depends_on "drbenmorgan/warwick/xrootd" => [:optional, 'c++11']
 
   needs :cxx11
@@ -22,6 +22,9 @@ class Root6 < Formula
   end
 
   def install
+    # rootcling doesn't like CPATH
+    ENV.delete("CPATH")
+
     # brew audit doesn't like non-executables in bin
     # so we will move {thisroot,setxrd}.{c,}sh to libexec
     # (and change any references to them)
@@ -41,6 +44,7 @@ class Root6 < Formula
         "-Dcastor=OFF",
         "-Dchirp=OFF",
         "-Ddcache=OFF",
+        "-Ddavix=OFF",
         "-Dfitsio=OFF",
         "-Dgfal=OFF",
         "-Dglite=OFF",
