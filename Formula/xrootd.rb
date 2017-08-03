@@ -9,10 +9,10 @@ class Xrootd < Formula
   depends_on "openssl"
   depends_on "readline"
 
-  option :cxx11
+  needs :cxx11
 
   def install
-    ENV.cxx11 if build.with? "c++11"
+    ENV.cxx11
     mkdir "build" do
       system "cmake", "..", "-DCMAKE_INSTALL_LIBDIR=#{lib}", "-DENABLE_FUSE=OFF", "-DENABLE_KRB5=OFF", *std_cmake_args
       system "make", "install"

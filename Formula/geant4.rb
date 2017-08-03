@@ -8,13 +8,15 @@ class Geant4 < Formula
 
   depends_on "cmake" => :build
   depends_on "zlib"
+  depends_on "expat"
   #depends_on :x11
 
   needs :cxx11
   option 'with-gdml', "Build with GDML support"
 
-  depends_on 'drbenmorgan/warwick/clhep' => 'c++11'
-  depends_on 'drbenmorgan/warwick/xerces-c' => 'c++11' if build.with? 'gdml'
+  depends_on 'drbenmorgan/warwick/clhep'
+  depends_on 'drbenmorgan/warwick/xerces-c' if build.with? 'gdml'
+  depends_on "drbenmorgan/warwick/qt5-base"
 
   def install
     mkdir 'geant4-build' do
@@ -28,6 +30,7 @@ class Geant4 < Formula
       args << "-DGEANT4_USE_SYSTEM_ZLIB=ON"
       args << "-DGEANT4_USE_RAYTRACER_X11=ON"
       args << "-DGEANT4_USE_OPENGL_X11=ON"
+      args << "-DGEANT4_USE_QT=ON"
 
       args << "-DGEANT4_USE_GDML=ON" if build.with? "gdml"
 
