@@ -1,12 +1,13 @@
 class Geant4 < Formula
   homepage "http://geant4.cern.ch"
-  url "http://geant4.cern.ch/support/source/geant4.10.02.p02.tar.gz"
-  version "10.02.02"
-  sha256 "702fb0f7a78d4bdf1e3f14508de26e4db5e2df6a21a8066a92b7e6ce21f4eb2d"
+  url "http://geant4.cern.ch/support/source/geant4.10.03.p01.tar.gz"
+  version "10.03.01"
+  sha256 "78edab8298789b2bac4189f0864a2fb65f66ffdc50b7cb3335fafe2b1e70fd7d"
 
   patch :DATA
 
   depends_on "cmake" => :build
+  depends_on "zlib"
   #depends_on :x11
 
   needs :cxx11
@@ -22,7 +23,7 @@ class Geant4 < Formula
       args << "-DCMAKE_INSTALL_LIBDIR=lib"
       args << "-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON"
       args << "-DGEANT4_BUILD_MULTITHREADED=ON"
-      args << "-DGEANT4_BUILD_CXXSTD=c++11" if build.cxx11?
+      args << "-DGEANT4_BUILD_CXXSTD=c++11"
       args << "-DGEANT4_USE_SYSTEM_CLHEP=ON"
       args << "-DGEANT4_USE_SYSTEM_ZLIB=ON"
       args << "-DGEANT4_USE_RAYTRACER_X11=ON"

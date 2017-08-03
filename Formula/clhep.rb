@@ -1,15 +1,8 @@
 class Clhep < Formula
   desc "Class Library for High Energy Physics"
   homepage "https://proj-clhep.web.cern.ch/proj-clhep/"
-  url "https://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/tarFiles/clhep-2.3.1.1.tgz"
-  sha256 "0e2b170df99176feb0aa4f20ea3b33463193c086682749790c5b9b79388d0ff4"
-
-  bottle do
-    cellar :any
-    sha256 "2201b22072c449346bea78bbad4f46fccd968b11b342c83310c25e79c16f0997" => :el_capitan
-    sha256 "18e6581c3d9d83e9853283c4d00e021701135b502432bab291c8e4a7e8e9e6db" => :yosemite
-    sha256 "c17e92f408af3768b363ea226e158c5008371e383a2f963fcc565bd7ba28c899" => :mavericks
-  end
+  url "https://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/tarFiles/clhep-2.3.4.3.tgz"
+  sha256 "1019479265f956bd660c11cb439e1443d4fd1655e8d51accf8b1e703e4262dff"
 
   head do
     url "http://git.cern.ch/pub/CLHEP", :using => :git
@@ -19,16 +12,16 @@ class Clhep < Formula
 
   depends_on "cmake" => :build
 
-  option :cxx11
+  needs :cxx11
 
   def install
-    ENV.cxx11 if build.with? "c++11"
+    ENV.cxx11
     # CLHEP is super fussy and doesn't allow source tree builds
     dir = Dir.mktmpdir
     cd dir do
       args = std_cmake_args
       args << "-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON"
-      args << "-DCLHEP_BUILD_CXXSTD=-std=c++11" if build.cxx11?
+      args << "-DCLHEP_BUILD_CXXSTD=-std=c++11"
        if build.stable?
         args << "#{buildpath}/CLHEP"
       else
