@@ -1,22 +1,18 @@
 class Geant4 < Formula
   homepage "http://geant4.cern.ch"
-  url "http://geant4.cern.ch/support/source/geant4.10.03.p01.tar.gz"
-  version "10.03.01"
-  sha256 "78edab8298789b2bac4189f0864a2fb65f66ffdc50b7cb3335fafe2b1e70fd7d"
-
+  url "http://geant4.cern.ch/support/source/geant4.10.04.p02.tar.gz"
+  version "10.04.02"
+  sha256 "2cac09e799f2eb609a7f1e4082d3d9d3d4d9e1930a8c4f9ecdad72aad35cdf10"
   patch :DATA
 
   depends_on "cmake" => :build
   depends_on "zlib"
   depends_on "expat"
-  #depends_on :x11
-
+  depends_on "xerces-c"
+  depends_on "drbenmorgan/warwick/clhep"
   needs :cxx11
-  option 'with-gdml', "Build with GDML support"
 
-  depends_on 'drbenmorgan/warwick/clhep'
-  depends_on 'drbenmorgan/warwick/xerces-c' if build.with? 'gdml'
-  depends_on "drbenmorgan/warwick/qt5-base"
+  #depends_on "drbenmorgan/warwick/qt5-base"
 
   def install
     mkdir 'geant4-build' do
@@ -28,12 +24,10 @@ class Geant4 < Formula
       args << "-DGEANT4_BUILD_CXXSTD=c++11"
       args << "-DGEANT4_USE_SYSTEM_CLHEP=ON"
       args << "-DGEANT4_USE_SYSTEM_ZLIB=ON"
+      args << "-DGEANT4_USE_GDML=ON"
       args << "-DGEANT4_USE_RAYTRACER_X11=ON"
       args << "-DGEANT4_USE_OPENGL_X11=ON"
-      args << "-DGEANT4_USE_QT=ON"
-
-      args << "-DGEANT4_USE_GDML=ON" if build.with? "gdml"
-
+      #args << "-DGEANT4_USE_QT=ON"
       # Default to installing data "in place" for now
       args << "-DGEANT4_INSTALL_DATA=ON"
 
