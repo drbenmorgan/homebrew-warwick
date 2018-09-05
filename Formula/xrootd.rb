@@ -6,6 +6,7 @@ class Xrootd < Formula
   head "https://github.com/xrootd/xrootd.git"
 
   depends_on "cmake" => :build
+  depends_on "libxml2"
   depends_on "openssl"
   depends_on "readline"
 
