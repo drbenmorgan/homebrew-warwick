@@ -9,9 +9,8 @@ class Geant4 < Formula
   depends_on "expat"
   depends_on "xerces-c"
   depends_on "drbenmorgan/warwick/clhep"
+  depends_on "drbenmorgan/warwick/qt5-base"
   needs :cxx11
-
-  #depends_on "drbenmorgan/warwick/qt5-base"
 
   def install
     mkdir 'geant4-build' do
@@ -23,10 +22,11 @@ class Geant4 < Formula
       args << "-DGEANT4_BUILD_CXXSTD=c++11"
       args << "-DGEANT4_USE_SYSTEM_CLHEP=ON"
       args << "-DGEANT4_USE_SYSTEM_ZLIB=ON"
+      args << "-DGEANT4_USE_SYSTEM_EXPAT=ON"
       args << "-DGEANT4_USE_GDML=ON"
       args << "-DGEANT4_USE_RAYTRACER_X11=ON"
       args << "-DGEANT4_USE_OPENGL_X11=ON"
-      #args << "-DGEANT4_USE_QT=ON"
+      args << "-DGEANT4_USE_QT=ON"
       # Default to installing data "in place" for now
       args << "-DGEANT4_INSTALL_DATA=ON"
 
