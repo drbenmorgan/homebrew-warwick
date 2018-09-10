@@ -1,9 +1,9 @@
 class Vc < Formula
   desc "Portable, zero-overhead C++ types for explicitly data-parallel programming"
   homepage "https://github.com/VcDevel/Vc"
-  url "https://github.com/VcDevel/Vc/archive/1.2.0.tar.gz"
-  version "1.2.0"
-  sha256 "9cd7b6363bf40a89e8b1d2b39044b44a4ce3f1fd6672ef3fc45004198ba28a2b"
+  url "https://github.com/VcDevel/Vc/archive/1.3.3.tar.gz"
+  version "1.3.3"
+  sha256 "32f1bdd4046a90907a2b63ee39d72ad0e6d0608937f8202d759d7fa0eddd1ec1"
 
   depends_on "cmake" => :build
   needs :cxx11
