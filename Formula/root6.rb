@@ -17,6 +17,8 @@ class Root6 < Formula
   depends_on "gsl"
   depends_on "python@2"
   depends_on "tbb"
+  depends_on "vdt"
+  depends_on "drbenmorgan/homebrew-warwick/xrootd"
 
   conflicts_with "root", :because => "Warwick requires custom root build"
 
@@ -82,7 +84,7 @@ class Root6 < Formula
       -Dsqlite=ON
       -Dssl=ON
       -Dmathmore=ON
-      -Dxrootd=OFF
+      -Dxrootd=ON
     ]
 
     # Python requires a bit of finessing
